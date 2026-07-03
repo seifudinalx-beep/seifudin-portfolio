@@ -1,39 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const projects = [
   {
     title: "Personal Portfolio",
+    image: "/projects/portfolio.png",
     description:
-      "A modern portfolio built with Next.js, TypeScript, Tailwind CSS, and Framer Motion to showcase my skills, projects, and professional journey.",
+      "A modern developer portfolio built with Next.js, TypeScript, Tailwind CSS and Framer Motion showcasing my projects, certifications and technical skills.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/seifudinalx-beep/seifudin-portfolio",
     demo: "https://seifudin-portfolio.vercel.app",
-    color: "from-cyan-500 to-blue-600",
   },
   {
-    title: "AI Productivity Projects",
+    title: "ALX AI Career Essentials",
+    image: "/projects/ai.png",
     description:
-      "Projects completed during the ALX AI Career Essentials program using AI for research, automation, prompt engineering, and workflow optimization.",
-    tech: ["ChatGPT", "GitHub Copilot", "Gemini", "Prompt Engineering"],
+      "Projects completed during the ALX AI Career Essentials programme covering prompt engineering, AI productivity, automation and problem solving.",
+    tech: ["ChatGPT", "Gemini", "GitHub Copilot", "AI"],
     github: "#",
     demo: "#",
-    color: "from-purple-500 to-pink-500",
   },
   {
-    title: "Customer Support Experience",
+    title: "ALX Virtual Assistant",
+    image: "/projects/va.png",
     description:
-      "Experience providing professional customer support, virtual assistance, communication, troubleshooting, and administrative support.",
+      "Virtual assistant projects demonstrating customer support, scheduling, communication, internet research and administrative skills.",
     tech: [
       "Customer Support",
-      "Virtual Assistance",
-      "Communication",
+      "Research",
+      "Google Workspace",
+      "CRM",
     ],
     github: "#",
     demo: "#",
-    color: "from-emerald-500 to-green-600",
   },
 ];
 
@@ -41,76 +43,62 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="bg-slate-950 text-white py-24 px-6"
+      className="max-w-7xl mx-auto px-6 pt-32 pb-24"
     >
-      <div className="max-w-7xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-5xl font-bold text-center text-white">
+          Featured Projects
+        </h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="text-cyan-400 font-semibold uppercase tracking-widest">
-            Portfolio
-          </p>
+        <p className="text-center text-slate-400 mt-5 max-w-3xl mx-auto text-lg leading-8">
+          A collection of projects showcasing my experience in modern web
+          development, artificial intelligence and virtual assistance.
+        </p>
 
-          <h2 className="text-5xl font-bold mt-3">
-            Featured Projects
-          </h2>
-
-          <p className="text-slate-400 mt-5 max-w-2xl mx-auto">
-            Here are some of the projects that demonstrate my software
-            development, AI, and problem-solving skills.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {projects.map((project, index) => (
-
+        <div className="grid lg:grid-cols-3 gap-8 mt-16">
+          {projects.map((project) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-xl"
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-cyan-400 shadow-xl"
             >
+              <div className="bg-slate-800 p-3">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={700}
+                  height={400}
+                  className="w-full h-56 object-contain rounded-lg"
+                />
+              </div>
 
-              <div
-                className={`h-44 bg-gradient-to-r ${project.color} flex items-center justify-center`}
-              >
+              <div className="p-7">
                 <h3 className="text-3xl font-bold text-white">
                   {project.title}
                 </h3>
-              </div>
 
-              <div className="p-6">
-
-                <p className="text-slate-400 leading-7">
+                <p className="text-slate-400 mt-5 leading-8">
                   {project.description}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-6">
-
                   {project.tech.map((item) => (
-
                     <span
                       key={item}
-                      className="bg-slate-800 text-cyan-400 px-3 py-1 rounded-full text-sm"
+                      className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-sm"
                     >
                       {item}
                     </span>
-
                   ))}
-
                 </div>
 
                 <div className="flex gap-4 mt-8">
-
                   <a
                     href={project.github}
                     target="_blank"
@@ -128,20 +116,14 @@ export default function Projects() {
                     className="flex items-center gap-2 border border-cyan-500 hover:bg-cyan-500 px-5 py-3 rounded-lg transition"
                   >
                     <FaExternalLinkAlt />
-                    Demo
+                    Live Demo
                   </a>
-
                 </div>
-
               </div>
-
             </motion.div>
-
           ))}
-
         </div>
-
-      </div>
+      </motion.div>
     </section>
   );
 }

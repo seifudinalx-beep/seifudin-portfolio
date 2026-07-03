@@ -10,16 +10,20 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="bg-slate-950 text-white overflow-x-hidden">
+    <>
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <AI />
-      <Projects />
-      <Certificates />
-      <Contact />
+
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <AI />
+        <Projects />
+        <Certificates />
+        <Contact />
+      </main>
+
       <Footer />
-    </main>
+    </>
   );
 }
